@@ -9,7 +9,6 @@ options = {
 
 if (!sensorConstructor) {
     document.querySelector("#mensagem").value = "Sem suporte";
-    return;
 }
 
 let sensor = new sensorConstructor(options || {});
