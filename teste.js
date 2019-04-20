@@ -15,11 +15,7 @@ if (!sensorConstructor) {
 let sensor = new sensorConstructor(options || {});
 
 sensor.onreading = () => {
-	function round(number, precision) {
-        let factor = 10 ** precision;
-        return Math.round(number * factor) / factor;
-    }
-
+	
 	document.querySelector("#x").value = sensor.x;
 	document.querySelector("#y").value = sensor.y;
 	document.querySelector("#z").value = sensor.z;
