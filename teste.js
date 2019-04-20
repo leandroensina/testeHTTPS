@@ -19,9 +19,9 @@ navigator.permissions.query({name:'accelerometer'}).then(function(result) {
 			} else {
 				document.querySelector("#mensagem").value ="This device does NOT have an Accelerometer!";
 			}
-
+	  }
 	  document.querySelector("#mensagem").value ="acesso negado";
-});
+);
 
 
 /*
