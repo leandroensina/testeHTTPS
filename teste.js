@@ -8,7 +8,7 @@ function round(number) {
 navigator.permissions.query({name:'accelerometer'}).then(function(result) {
 	  if (result.state == 'granted') {
 		  if (Accelerometer) {
-				document.querySelector("#mensagem").value ="This device has an Accelerometer!";
+			   document.querySelector("#mensagem").value ="This device has an Accelerometer!";
 			   const accelerometer = new Accelerometer({ frequency: 1 });
 			   accelerometer.addEventListener("reading", () => {
 				   document.querySelector("#x").value =accelerometer.x;
@@ -20,9 +20,6 @@ navigator.permissions.query({name:'accelerometer'}).then(function(result) {
 				document.querySelector("#mensagem").value ="This device does NOT have an Accelerometer!";
 			}
 
-	  } else if (result.state == 'prompt') {
-	    
-	  }
 	  document.querySelector("#mensagem").value ="acesso negado";
 });
 
