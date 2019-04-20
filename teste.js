@@ -1,6 +1,5 @@
 
-document.querySelector("#acc").textContent = "YES";
-document.querySelector("#acc").className = "yes";
+
 window.addEventListener("devicemotion", accelerometerUpdate, true);
 
 function accelerometerUpdate(event) {
@@ -11,13 +10,6 @@ function accelerometerUpdate(event) {
 	document.querySelector("#x").value = aX;
 	document.querySelector("#y").value = aY;
 	document.querySelector("#z").value = aZ;
-
-	// ix aY is negative, switch rotation
-	if (aY <0) {
-		aX = -aX - 180;
-	}
-	document.querySelector("#block").style.transform="rotate("+aX+"deg)";
-
 }
 
 
