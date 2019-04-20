@@ -1,33 +1,31 @@
 
-if (window.DeviceMotionEvent == undefined) {
-	//No accelerometer is present. Use buttons. 
-	document.querySelector("#acc").textContent = "NO";
-	document.querySelector("#acc").className = "no";
-
-}
-else {
-	document.querySelector("#acc").textContent = "YES";
-	document.querySelector("#acc").className = "yes";
-	window.addEventListener("devicemotion", accelerometerUpdate, true);
+function round(number) {
+    let factor = 10 ** 3;
+    return Math.round(number * factor) / factor;
 }
 
 
-function accelerometerUpdate(event) {
-   var aX = event.accelerationIncludingGravity.x*10;
-   var aY = event.accelerationIncludingGravity.y*10;
-   var aZ = event.accelerationIncludingGravity.z*10;
+navigator.permissions.query({name:'accelerometer'}).then(function(result) {
+	  if (result.state == 'granted') {
+		  if (Accelerometer) {
+				document.querySelector("#mensagem").value ="This device has an Accelerometer!";
+			   const accelerometer = new Accelerometer({ frequency: 1 });
+			   accelerometer.addEventListener("reading", () => {
+				   document.querySelector("#x").value =accelerometer.x;
+				   document.querySelector("#y").value =accelerometer.y;
+				   document.querySelector("#z").value =accelerometer.z;
+			   });
+			   accelerometer.start();
+			} else {
+				document.querySelector("#mensagem").value ="This device does NOT have an Accelerometer!";
+			}
 
-	document.querySelector("#x").value = aX;
-	document.querySelector("#y").value = aY;
-	document.querySelector("#z").value = aZ;
+	  } else if (result.state == 'prompt') {
+	    
+	  }
+	  document.querySelector("#mensagem").value ="acesso negado";
+});
 
-	// ix aY is negative, switch rotation
-	if (aY <0) {
-		aX = -aX - 180;
-	}
-	document.querySelector("#block").style.transform="rotate("+aX+"deg)";
-
-}
 
 /*
 let option = null;
