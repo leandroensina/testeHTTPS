@@ -1,8 +1,27 @@
-let accelerometer = new Accelerometer({frequency: 60});
+let option = null;
+let sensorConstructor = null;
 
-accelerometer.addEventListener('reading', e => 
-	document.querySelector("#x").value = accelerometer.x;
-	document.querySelector("#y").value = accelerometer.y;
-	document.querySelector("#z").value = accelerometer.z;
-);
-accelerometer.start();
+sensorConstructor = window.Accelerometer;
+
+options = {
+    frequency: 60
+};
+
+if (!sensorConstructor) {
+    document.querySelector("#mensagem").value = "Sem suporte";
+    return;
+}
+
+let sensor = new sensorConstructor(options || {});
+
+sensor.onreading = () => {
+	function round(number, precision) {
+        let factor = 10 ** precision;
+        return Math.round(number * factor) / factor;
+    }
+
+	document.querySelector("#x").value = sensor.x;
+	document.querySelector("#y").value = sensor.y;
+	document.querySelector("#z").value = sensor.z;
+	
+}
