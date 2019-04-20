@@ -2,7 +2,7 @@ let option = null;
 let sensorConstructor = null;
 
 sensorConstructor = window.Accelerometer;
-
+document.querySelector("#mensagem").value = "ALO 1";
 options = {
     frequency: 60
 };
