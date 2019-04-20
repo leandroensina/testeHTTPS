@@ -21,7 +21,7 @@ navigator.permissions.query({name:'accelerometer'}).then(function(result) {
 			}
 	  }
 	  document.querySelector("#mensagem").value ="acesso negado";
-);
+});
 
 
 /*
